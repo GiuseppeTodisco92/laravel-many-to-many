@@ -40,6 +40,34 @@
                         @enderror
                     </div>
 
+                    <div class="form-group">
+                        <p>Tags</p>
+
+                        @foreach ($tags as $tag)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="{{$tag->slug}}" value="{{$tag->id}}" name="tags[]" {{in_array($tag->id, old('tags', [])) ? 'checked' : ''}}>
+                            <label class="form-check-label" for="{{$tag->slug}}">{{$tag->name}}</label>
+                        </div>
+                        @endforeach
+                        @error('tags')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    {{--!!DA FARE provare ad aggiungere tag dal post --}}
+                    
+                    <div class="form-group ">
+                        <label for="name">Tag</label>
+                        {{-- passare il valore attraverso l input box e pusharlo in tags  --}}
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name')}}">
+                        @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        {{-- inviare dati dal button  --}}
+                        <button type="button" class="btn btn-primary my-2">Aggiungi un nuovo tag</button>
+                        
+                    </div>
+                    
+
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input @error('published') is-invalid @enderror" id="published" name="published" {{old('published') ? 'checked' : ''}}>
                         <label class="form-check-label" for="published">Pubblica</label>

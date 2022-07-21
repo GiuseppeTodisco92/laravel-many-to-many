@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $guarded = ['tags'];
-    //protezione dei campi 
 
     public function category()
     {
